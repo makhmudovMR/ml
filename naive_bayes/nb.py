@@ -1,15 +1,18 @@
-import pandas as pd
+# we will use iris dataset
+from sklearn.datasets import load_iris
+from sklearn.naive_bayes import GaussianNB
 import numpy as np
 
-# Create an empty dataframe
-data = pd.DataFrame()
+# load the dataset
+data = load_iris()
 
-# Create our target variable
-data['Gender'] = ['male','male','male','male','female','female','female','female']
+model = GaussianNB()
+model.fit(data.data, data.target)
 
-# Create our feature variables
-data['Height'] = [6,5.92,5.58,5.92,5,5.5,5.42,5.75]
-data['Weight'] = [180,190,170,165,100,150,130,150]
-data['Foot_Size'] = [12,11,12,10,6,8,7,9]
+# evalaute
+print(model.score(data.data, data.target))
+# output = 0.96
 
-print(data)
+# predict
+model.predict([4.2, 3, 0.9, 2.1])
+# 0 = setosa,1 = versicolor, and 2 = virginica
