@@ -18,6 +18,9 @@ class Network(object):
             a = sigmoid(np.dot(w,a))
         return a
 
+    def train(self, a, y):
+        pass
+
 
 if __name__ == '__main__':
     nn = Network([2, 3, 2])
