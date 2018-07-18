@@ -18,6 +18,8 @@ class NN(object):
         nabla_w = [np.zeros(w.shape) for w in self.weights]
         nabla_b = [np.zeros(b.shape) for b in self.biases]
 
+        # print(nabla_w)
+        # print(nabla_b)
         a = x
         activations = [x]
         zs = []
@@ -50,16 +52,15 @@ class NN(object):
         return a
 
     def _sigmoid_derivative(self, x):
-        return x * (1 - x)
+        return self.sigmoid(x) * (1 - self.sigmoid(x))
 
 
 if __name__ == '__main__':
     nn = NN([2,5,2])
-    x = np.array([1,1], ndmin=2).T
-    y = np.array([1], ndmin=2).T
+    x = np.array([0,1], ndmin=2).T
+    y = np.array([1,0], ndmin=2).T
     print(nn.forward(x))
-    for i in range(5000):
+    for i in range(2000):
         nn.train(x,y)
     print(nn.forward(x))
-
 
